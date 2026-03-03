@@ -68,3 +68,32 @@ Current milestone:
 - Binary storage format designed
 - Row serializer planned
 - FileStorageEngine pending implementation
+
+---
+
+## Known Limitations (Intentional Design Decisions)
+
+MiniDB currently uses a full-table materialization strategy for UPDATE and DELETE operations.
+
+This means:
+
+- All rows of a table are loaded into memory
+- The entire table file is rewritten after modifications
+- Operations are O(n) in time
+- Memory usage is O(n)
+
+This design is intentional and chosen for:
+
+- Architectural simplicity
+- Clear separation of concerns
+- Educational clarity
+- Avoiding premature optimization
+
+MiniDB is not designed to handle large datasets.
+
+Future versions may implement:
+
+- Streaming rewrites
+- In-place row updates
+- Page-based storage
+- Index-based row lookup

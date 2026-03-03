@@ -110,3 +110,19 @@ Current supported types:
 - Explicit invariants
 - Separation of concerns
 - Storage independence
+
+---
+
+## Current Mutation Strategy
+
+UPDATE and DELETE operations do not mutate rows in place.
+
+Instead:
+
+1. All rows are read from storage.
+2. Rows are filtered or modified in memory.
+3. The table file is rewritten entirely.
+
+This simplifies implementation and preserves architectural clarity.
+
+This approach is not optimized for large datasets and is considered an intentional limitation for educational purposes.

@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB1D5CC9-C1E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDB.Domain", "src\MiniDB.Domain\MiniDB.Domain.csproj", "{185AA306-46E0-48FE-A08F-DB6785F89431}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniDB.Application", "src\MiniDB.Application\MiniDB.Application.csproj", "{7E5F7426-382C-485A-859F-A1E4067ECFA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +22,13 @@ Global
 		{185AA306-46E0-48FE-A08F-DB6785F89431}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185AA306-46E0-48FE-A08F-DB6785F89431}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185AA306-46E0-48FE-A08F-DB6785F89431}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E5F7426-382C-485A-859F-A1E4067ECFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E5F7426-382C-485A-859F-A1E4067ECFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E5F7426-382C-485A-859F-A1E4067ECFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E5F7426-382C-485A-859F-A1E4067ECFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{185AA306-46E0-48FE-A08F-DB6785F89431} = {EB1D5CC9-C1EE-486B-961A-996251085264}
+		{7E5F7426-382C-485A-859F-A1E4067ECFA9} = {EB1D5CC9-C1EE-486B-961A-996251085264}
 	EndGlobalSection
 EndGlobal
