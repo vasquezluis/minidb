@@ -3,11 +3,11 @@ using MiniDB.Domain;
 
 namespace MiniDB.Application.UseCases
 {
-    public class CreateTableUseCase
+    public class CreateUseCase
     {
         private readonly DatabaseService _dbService;
 
-        public CreateTableUseCase(DatabaseService dbService)
+        public CreateUseCase(DatabaseService dbService)
         {
             _dbService = dbService;
         }
