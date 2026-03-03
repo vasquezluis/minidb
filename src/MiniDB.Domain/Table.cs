@@ -36,5 +36,26 @@ namespace MiniDB.Domain
                     throw new InvalidOperationException("Invalid string value.");
             }
         }
+
+        public int CalculateRowSize()
+        {
+            int size = 1; // IsDeleted flag
+
+            foreach (var column in Columns)
+            {
+                switch (column.Type)
+                {
+                    case DataType.Int:
+                        size += 4;
+                        break;
+
+                    case DataType.String:
+                        size += column.MaxLength;
+                        break;
+                }
+            }
+
+            return size;
+        }
     }
 }

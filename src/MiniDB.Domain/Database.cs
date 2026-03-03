@@ -6,7 +6,7 @@ namespace MiniDB.Domain
 
         public IReadOnlyCollection<Table> Tables => _tables.Values;
 
-        public void AddTable(Table table)
+        public void RegisterTable(Table table)
         {
             if (_tables.ContainsKey(table.Name))
                 throw new InvalidOperationException("Table already exists.");
