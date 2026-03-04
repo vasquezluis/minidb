@@ -3,19 +3,22 @@ using MiniDB.Domain;
 
 namespace MiniDB.Application.UseCases
 {
-    public class SelectAllUseCase
+    public class InsertUseCase
     {
         private readonly DatabaseService _dbService;
 
-        public SelectAllUseCase(DatabaseService dbService)
+        public InsertUseCase(DatabaseService dbService)
         {
             _dbService = dbService;
         }
 
-        public IEnumerable<Row> Execute(string tableName)
+        public void Execute(string tableName, IEnumerable<object?> values)
         {
             var table = GetTable(tableName);
-            return _dbService.Storage.ReadRows(table).ToList();
+
+            var row = table.CreateRow(values);
+
+            _dbService.Storage.InsertRow(table, row);
         }
 
         private Table GetTable(string name)

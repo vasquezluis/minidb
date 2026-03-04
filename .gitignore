@@ -102,3 +102,6 @@ ServiceFabricBackup/
 .env.development
 .env.test
 .env.production
+
+# Database Data
+Data/

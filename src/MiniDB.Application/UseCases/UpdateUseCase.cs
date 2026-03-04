@@ -12,21 +12,28 @@ namespace MiniDB.Application.UseCases
             _dbService = dbService;
         }
 
-        public void Execute(string tableName, Func<Row, bool> predicate, Action<Row> updateAction)
+        public void Execute(string tableName, Func<Row, bool> predicate, Func<Row, object?[]> updater)
         {
-            var table = _dbService.Database.GetTable(tableName);
+            var table = GetTable(tableName);
 
-            var rows = _dbService.ReadRows(table).ToList();
+            var rows = _dbService.Storage.ReadRows(table).ToList();
+
+            var updated = new List<Row>();
 
             foreach (var row in rows)
             {
                 if (predicate(row))
-                {
-                    updateAction(row);
-                }
+                    updated.Add(table.CreateRow(updater(row)));
+                else
+                    updated.Add(row);
             }
 
-            _dbService.RewriteTable(table, rows);
+            _dbService.Storage.RewriteTable(table, updated);
         }
+
+        private Table GetTable(string name)
+            => _dbService.Database.Tables
+                .FirstOrDefault(t => t.Name == name)
+                ?? throw new InvalidOperationException("Table not found.");
     }
 }

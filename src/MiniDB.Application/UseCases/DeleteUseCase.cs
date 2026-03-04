@@ -14,13 +14,18 @@ namespace MiniDB.Application.UseCases
 
         public void Execute(string tableName, Func<Row, bool> predicate)
         {
-            var table = _dbService.Database.GetTable(tableName);
+            var table = GetTable(tableName);
 
-            var rows = _dbService.ReadRows(table).ToList();
+            var rows = _dbService.Storage.ReadRows(table).ToList();
 
-            var remainingRows = rows.Where(r => !predicate(r)).ToList();
+            var filtered = rows.Where(r => !predicate(r)).ToList();
 
-            _dbService.RewriteTable(table, remainingRows);
+            _dbService.Storage.RewriteTable(table, filtered);
         }
+
+        private Table GetTable(string name)
+            => _dbService.Database.Tables
+                .FirstOrDefault(t => t.Name == name)
+                ?? throw new InvalidOperationException("Table not found.");
     }
 }

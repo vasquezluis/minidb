@@ -3,37 +3,21 @@ using MiniDB.Domain.Abstractions;
 
 namespace MiniDB.Application.Services
 {
+
     public class DatabaseService
     {
         private readonly IStorageEngine _storage;
-        private Database _database;
+        private readonly string _dbPath;
 
-        public DatabaseService(IStorageEngine storage, Database database)
+        public Database Database { get; }
+
+        public DatabaseService(IStorageEngine storage, string dbPath)
         {
             _storage = storage;
-            _database = database;
+            _dbPath = dbPath;
+            Database = _storage.LoadDatabase(dbPath);
         }
 
-        public Database Database => _database;
-
-        public void SaveTable(Table table)
-        {
-            _storage.SaveTable(table);
-        }
-
-        public void InsertRow(Table table, Row row)
-        {
-            _storage.InsertRow(table, row);
-        }
-
-        public IEnumerable<Row> ReadRows(Table table)
-        {
-            return _storage.ReadRows(table);
-        }
-
-        public void RewriteTable(Table table, IEnumerable<Row> rows)
-        {
-            _storage.RewriteTable(table, rows);
-        }
+        public IStorageEngine Storage => _storage;
     }
 }
